@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "github.com/devnull-twitch/gameserver-manager/proto";
+
+package gameservermanager;
+
+service GameserverManager {
+    rpc GetGameserver(GetRequest) returns (GetResponse);
+}
+
+message GetRequest {
+    // Zone ( eql Scene in godot )
+    string zone = 1;
+}
+
+message GetResponse {
+    // Gameserver IP
+    string gs_ip = 1;
+
+    // Gameserver port
+    int64 gs_port = 2;
+}
