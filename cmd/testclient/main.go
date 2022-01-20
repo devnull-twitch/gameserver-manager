@@ -17,12 +17,19 @@ func main() {
 	defer conn.Close()
 	client := proto.NewGameserverManagerClient(conn)
 
-	response, err := client.GetGameserver(context.Background(), &proto.GetRequest{
+	_, err = client.GetGameserver(context.Background(), &proto.GetRequest{
 		Zone: "overworld",
 	})
 	if err != nil {
 		log.Fatalf("rpc error: %v", err)
 	}
 
-	log.Printf("%+v", response)
+	_, err = client.GetGameserver(context.Background(), &proto.GetRequest{
+		Zone: "otherworld",
+	})
+	if err != nil {
+		log.Fatalf("rpc error: %v", err)
+	}
+
+	log.Println("requested game server")
 }
